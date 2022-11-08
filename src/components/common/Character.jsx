@@ -6,7 +6,7 @@ const Character = ({ character }) => {
     <>
       <div className="cardBody">
         <div className="image">
-          <img src={character.image} alt="Rick" />
+          {character.image?<img src={character.image} alt="Rick" />:''}
         </div>
         <div className="info">
           <div>

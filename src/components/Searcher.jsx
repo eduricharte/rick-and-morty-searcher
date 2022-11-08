@@ -1,33 +1,20 @@
-import React, { useState } from "react";
-import Button from "./common/Button";
+import React from "react";
 import "../styles/Searcher.scss";
-import Select from "./common/Select";
+import "../styles/Button.scss";
 
-const Searcher = ({ locations, episodes }) => {
-  const [text, setText] = useState("");
-
-  const handleInputChange = ({ target }) => {
-    setText(target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.prevetDefault();
-    console.log(text);
-  };
-
+const Searcher = ({ isCharacterEnabled, setText, setPageNumber }) => {
   return (
-    <div className="searcher">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search Character Name"
-          onChange={handleInputChange}
-        />
-        <Select array={locations} type={"location"} />
-        <Select array={episodes} type={"episode"} />
-        <Button text={"Search"} type={"Submit"} />
-      </form>
-    </div>
+    <>
+      <input
+        type="text"
+        placeholder="Search Character Name"
+        disabled={!isCharacterEnabled}
+        onChange={({ target }) => {
+          setPageNumber(1);
+          setText(target.value);
+        }}
+      />
+    </>
   );
 };
 
